@@ -1,0 +1,119 @@
+#header {
+    position: relative;  
+    height: 230px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.home_link{
+    cursor: pointer;
+    text-decoration: none;
+    position: relative;
+    font-family: Roboto Medium;
+    font-size: 0;
+}
+
+.home {
+   background: url("/src/img-header/header_page2_mobile.png");
+   background: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56));
+  
+}
+.library {
+    background: url("/src/img-header/header_page1_mobile.png"); 
+     background: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56));
+}
+.navigation {
+    padding: 46px 20px 38px;
+    align-items: center;
+    display: flex;
+}
+
+.navigation__link {
+  
+  cursor: pointer;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-family: "Roboto Medium";
+  font-size: 12px;
+  line-height: 16px;
+   
+}
+.active{
+    position: relative;
+
+    &::after{
+        display: block;
+        content: "";
+        position: absolute;
+        background-color: #ff6b08;
+        width: 100%;
+        height: 3px;
+        margin: 3px auto 0px;
+    }
+}
+#home{
+    margin-right: 42px;
+}
+.form{
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.logo{
+    margin: 0;
+    margin-right: auto;
+}
+.home-link {
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  font-family: "Roboto Medium";
+  font-size: 0;
+
+  &:hover {
+    color: #fff;
+  }
+
+  &::before {
+    position: absolute;
+    content: "";
+    display: block;
+    top: -30px;
+    left: -13px;
+    width: 48px;
+    height: 48px;
+    background-image: url("/src/img-header/film.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.6;
+    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    outline: none;
+  }
+}
+.js-buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.library__button {
+  width: 130px;
+  height: 44px;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 12px;
+  line-height: 16px;
+  background: transparent;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.library__button--active {
+  border: none;
+  outline: none;
+}
