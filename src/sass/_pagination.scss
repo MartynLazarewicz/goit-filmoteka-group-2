@@ -7,12 +7,14 @@
   & .page {
     padding: 20px;
     cursor: pointer;
+    color: black;
   }
   & .disabled {
     cursor: not-allowed;
     color: rgba(238, 238, 238, 0.5);
   }
   & .current {
+    color: black;
     padding: 10px 15px;
     border-radius: 50%;
     border: 3px solid rgba(255, 255, 255, 0.1);

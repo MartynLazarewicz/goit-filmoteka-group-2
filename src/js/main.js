@@ -1,5 +1,5 @@
-import { tags, setGenre } from './fn-genres.js';
-import { genresToggle } from './genres-btn.js';
+// import { tags, setGenre } from './fn-genres.js';
+// import { genresToggle } from './genres-btn.js';
 import { genre } from './genres.js';
 
 const API_KEY = 'api_key=d2b5af87a64d923fbc9cd42aa4272fb1';
@@ -17,9 +17,9 @@ const body = document.querySelector('body');
 
 // Pagination elements
 
-const prev = document.getElementById('prev');
-const current = document.getElementById('current');
-const next = document.getElementById('next');
+let prev = document.querySelector('#prev');
+let current = document.querySelector('#current');
+let next = document.querySelector('#next');
 
 let currentPage = 1;
 let nextPage = 2;
@@ -188,7 +188,7 @@ form.addEventListener('submit', e => {
 
 // Genres
 
-setGenre();
+// setGenre();
 
 // const genresBtn = document.querySelector('.genres-button');
 // genresBtn.addEventListener('click', genresToggle);
@@ -198,20 +198,22 @@ setGenre();
 prev.addEventListener('click', () => {
   if (prevPage > 0) {
     pageCall(prevPage);
+    console.log(prevPage);
   }
 });
 
 next.addEventListener('click', () => {
   if (nextPage <= totalPages) {
     pageCall(nextPage);
+    console.log(prevPage);
   }
 });
 
 function pageCall(page) {
   let urlSplit = lastUrl.split('?');
-  let queryParams = urlSplit[1].split('&');
+  let queryParams = urlSplit[1].split('?');
   let key = queryParams[queryParams.length - 1].split('=');
-  if (key[0] != 'page') {
+  if (key[0] !== 'page') {
     let url = lastUrl + '&page=' + page;
     getMovies(url);
   } else {
