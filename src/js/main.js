@@ -1,3 +1,6 @@
+import Notiflix from 'notiflix';
+import 'notiflix/dist/notiflix-3.2.5.min.css';
+
 // import { tags, setGenre } from './fn-genres.js';
 // import { genresToggle } from './genres-btn.js';
 import { genre } from './genres.js';
@@ -13,7 +16,6 @@ const searchURL = BASE_URL + '/search/movie?' + API_KEY;
 
 const main = document.querySelector('#main');
 const form = document.querySelector('#form');
-const body = document.querySelector('body');
 
 // Pagination elements
 
@@ -59,8 +61,15 @@ export function getMovies(url) {
       }
       main.scrollIntoView({ behavior: 'smooth' });
 
+      // if (data.results.length === 0) {
+      //   console.log('ERROR IN SEARCH');
+      //   getMovies(API_URL);
+      // }
+
       if (data.results.length === 0) {
-        console.log('ERROR IN SEARCH');
+        Notiflix.Notify.failure(
+          'Sorry, there are no images matching your search query. Please try again.'
+        );
         getMovies(API_URL);
       }
     });
@@ -152,12 +161,12 @@ export function showMovies(data) {
 
     document.getElementById(id).addEventListener('click', () => {
       document.getElementById('modal' + id).style.display = 'block';
-      body.classList.add('noOverFlow');
+      document.querySelector('body').style.overflow = 'hidden';
     });
 
     document.getElementById('close' + id).addEventListener('click', () => {
       document.getElementById('modal' + id).style.display = 'none';
-      body.classList.remove('noOverFlow');
+      document.querySelector('body').style.overflow = 'visible';
     });
   });
 }
@@ -179,6 +188,7 @@ function getColor(vote) {
 form.addEventListener('submit', e => {
   e.preventDefault();
   const searchTerm = document.querySelector('input').value;
+  pageCall(prevPage);
   if (searchTerm) {
     getMovies(searchURL + QUERY + searchTerm);
   } else {
@@ -197,15 +207,13 @@ form.addEventListener('submit', e => {
 
 prev.addEventListener('click', () => {
   if (prevPage > 0) {
-    pageCall(prevPage);
-    console.log(prevPage);
+    pageCall(current);
   }
 });
 
 next.addEventListener('click', () => {
   if (nextPage <= totalPages) {
     pageCall(nextPage);
-    console.log(prevPage);
   }
 });
 
