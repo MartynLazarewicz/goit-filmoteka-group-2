@@ -2,23 +2,30 @@ main {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin-inline: auto;
+  gap: 30px;
   & .movie {
-    width: 400px;
-    margin: 1rem;
+    width: 100%;
+    margin-top: 1rem;
     border-radius: 15px;
     box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.4);
+    padding-bottom: 10px;
+    margin-inline: 20px;
     &__btn {
       background: none;
       border: none;
       padding: 0;
       outline: inherit;
       cursor: pointer;
+      width: 100%;
       & .poster-img {
-        width: 400px;
+        width: 100%;
+        max-height: 398px;
+        display: block;
       }
     }
     & .info {
-      font-family: "Roboto";
+      font-family: 'Roboto';
       font-weight: 500;
       font-size: 12px;
       line-height: 14px;
@@ -29,17 +36,21 @@ main {
       &__title {
         text-transform: uppercase;
         color: #000000;
+        margin-top: 10px;
+        margin-bottom: 0px;
       }
       &__genres-and-year {
         color: #ff6b08;
-        padding: 0 10px;
+        // padding: 0 10px;
+        font-size: 15px;
+        margin: 0;
       }
       & span {
-        background-color: rgba(0, 0, 0, .5);
+        background-color: #ff6b01;
         padding: 0.25rem 0.5rem;
         border-radius: 5px;
         font-weight: bolder;
-        
+
         &.green {
           color: lightgreen;
         }
@@ -51,5 +62,56 @@ main {
         }
       }
     }
+  }
+}
+
+@media screen and (min-width: 320px) {
+  main {
+    width: 320px;
+    & .movie {
+      width: 280px;
+      margin-inline: 0;
+      &__btn {
+        & .poster-img {
+          width: 280px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  main {
+    width: 768px;
+    & .movie {
+      width: 294px;
+      margin-inline: 0;
+      &__btn {
+        & .poster-img {
+          width: 294px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  main {
+    width: 1024px;
+    & .movie {
+      width: 274px;
+      margin-inline: 0;
+      &__btn {
+        & .poster-img {
+          width: 274px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1186px) {
+  main {
+    width: 1186px;
   }
 }

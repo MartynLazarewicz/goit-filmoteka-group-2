@@ -13,6 +13,7 @@ const searchURL = BASE_URL + '/search/movie?' + API_KEY;
 
 const main = document.querySelector('#main');
 const form = document.querySelector('#form');
+const body = document.querySelector('body');
 
 // Pagination elements
 
@@ -37,10 +38,10 @@ export function getMovies(url) {
     .then(data => {
       showMovies(data.results);
 
-        currentPage = data.page;
-        console.log(currentPage);
-        nextPage = data.page + 1;
-        console.log(nextPage);
+      currentPage = data.page;
+      console.log(currentPage);
+      nextPage = data.page + 1;
+      console.log(nextPage);
       prevPage = data.page - 1;
       totalPages = data.total_pages;
 
@@ -99,10 +100,15 @@ export function showMovies(data) {
     }" alt="image"></button>
       <div class="movie__info">
           <div class="info"><h3 class="info__title">${title}</h3>
-          <span class="${getColor(vote_average)}">${vote_average}</span></div>
-          <p class="info__genres-and-year">${genreNames.join(
-            ', '
-          )} | ${release_date.slice(0, 4)} </p>        
+          </div>
+          <div class="info ">
+            <p class="info__genres-and-year">${genreNames.join(
+              ', '
+            )} | ${release_date.slice(0, 4)} </p><span class="${getColor(
+      vote_average
+    )}">${vote_average}</span>
+          </div>
+                  
       </div>
       `;
 
@@ -146,10 +152,12 @@ export function showMovies(data) {
 
     document.getElementById(id).addEventListener('click', () => {
       document.getElementById('modal' + id).style.display = 'block';
+      body.classList.add('noOverFlow');
     });
 
     document.getElementById('close' + id).addEventListener('click', () => {
       document.getElementById('modal' + id).style.display = 'none';
+      body.classList.remove('noOverFlow');
     });
   });
 }
