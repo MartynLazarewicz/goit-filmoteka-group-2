@@ -1,0 +1,2 @@
+const e=document.getElementById("myModal"),o=document.getElementById("myBtn"),n=document.getElementsByClassName("close")[0],t=document.querySelector("body");o.onclick=function(){e.style.display="block",t.classList.add("noOverFlow")},n.onclick=function(){e.style.display="none",t.classList.remove("noOverFlow")},window.onclick=function(o){o.target==e&&(e.style.display="none",t.classList.remove("noOverFlow"))};
+//# sourceMappingURL=index.785a7e57.js.map
