@@ -124,7 +124,7 @@ export function showMovies(data) {
     const modal = `
       <div id="${'modal' + id}" class="modal">
         <div class="modal-content">
-          <span id="${'close' + id}"class="close">x</span>
+          <span id="${'close' + id}" class="close">x</span>
           <div class="modal-content__sides">
             
           <div class="modal-content__img">
@@ -167,6 +167,24 @@ export function showMovies(data) {
     document.getElementById('close' + id).addEventListener('click', () => {
       document.getElementById('modal' + id).style.display = 'none';
       document.querySelector('body').style.overflow = 'visible';
+    });
+
+    //  Local Storage
+
+    const btnAddToWatched = document.querySelector(
+      `#modal${id} .modal-content__buttons--add-to-watched`
+    );
+
+    btnAddToWatched.addEventListener('click', () => {
+      addMovieToLibrary('libraryWatched', movie);
+    });
+
+    const btnAddToQueue = document.querySelector(
+      `#modal${id} .modal-content__buttons--add-to-queue`
+    );
+
+    btnAddToQueue.addEventListener('click', () => {
+      addMovieToLibrary('libraryQueue', movie);
     });
   });
 }
@@ -231,5 +249,21 @@ function pageCall(page) {
     let b = queryParams.join('&');
     let url = urlSplit[0] + '?' + b;
     getMovies(url);
+  }
+}
+
+function addMovieToLibrary(key, movie) {
+  const libraryItems = localStorage.getItem(key);
+
+  if (libraryItems === null) {
+    const data = [movie];
+    localStorage.setItem(key, JSON.stringify(data));
+  } else {
+    const getLocalStorage = JSON.parse(libraryItems);
+
+    if (getLocalStorage.find(m => m.id === movie.id) === undefined) {
+      getLocalStorage.push(movie);
+      localStorage.setItem(key, JSON.stringify(getLocalStorage));
+    }
   }
 }
