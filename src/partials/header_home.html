@@ -12,7 +12,7 @@
 					</li>
          </ul> 
       </nav>
-      <div id="form" class="form none">
+      <div id="form" class="form">
         <form class="search-form">
           <div class="input__wrapper">
             <input
@@ -24,7 +24,11 @@
               autocomplete="off"
             />
             <button type="submit" class="form__button">
-              <span class="form__search"></span>
+             
+                <svg class="form__search" width="12" height="12">
+                    <use href="/src/images/sprite.svg#search"></use>
+                </svg>
+              
             </button>
           </div>
         </form>
@@ -32,3 +36,4 @@
       </div>
      
     </header>
+   
