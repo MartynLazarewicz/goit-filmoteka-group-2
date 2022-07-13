@@ -24,25 +24,25 @@
 .form__button {
   border: none;
   background: none;
-  width: 16px;
-  height: 16px;
-  outline: none;
-  margin: 0;
-  padding: 0;
+  width: 20px;
+  height: 20px;
+  
 
 }
 .form__search {
-  display: block;
-  width: 16px;
-  height: 16px;
+   
+  width: 15px;
+  height: 15px;
   background-image: url("/src/images/sprite.svg#search");
   background-repeat: no-repeat;
   background-position-x: right;
   background-position-y: bottom;
   background-size: 70%;
   cursor: pointer;
-  outline: none;
-}
+  
+  
+ }
+
 
 
 .form__warning {
