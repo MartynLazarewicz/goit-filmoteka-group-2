@@ -1,5 +1,5 @@
-// import Notiflix from 'notiflix';
-// import 'notiflix/dist/notiflix-3.2.5.min.css';
+import Notiflix from 'notiflix';
+import 'notiflix/dist/notiflix-3.2.5.min.css';
 
 
 // import { tags, setGenre } from './fn-genres.js';
@@ -62,17 +62,17 @@ export function getMovies(url) {
       }
       main.scrollIntoView({ behavior: 'smooth' });
 
-      // if (data.results.length === 0) {
-      //   console.log('ERROR IN SEARCH');
-      //   getMovies(API_URL);
-      // }
+      if (data.results.length === 0) {
+        console.log('ERROR IN SEARCH');
+        getMovies(API_URL);
+      }
 
-      // if (data.results.length === 0) {
-      //   Notiflix.Notify.failure(
-      //     'Sorry, there are no images matching your search query. Please try again.'
-      //   );
-      //   getMovies(API_URL);
-      // }
+      if (data.results.length === 0) {
+        Notiflix.Notify.failure(
+          'Sorry, there are no images matching your search query. Please try again.'
+        );
+        getMovies(API_URL);
+      }
     });
 }
 
