@@ -1,7 +1,6 @@
 import Notiflix from 'notiflix';
 import 'notiflix/dist/notiflix-3.2.5.min.css';
 
-
 // import { tags, setGenre } from './fn-genres.js';
 // import { genresToggle } from './genres-btn.js';
 import { genre } from './genres.js';
@@ -31,6 +30,28 @@ let lastUrl = '';
 let totalPages = 100;
 
 // API query
+async function getapi(url) {
+  // Storing response
+  const response = await fetch(url);
+
+  // Storing data in form of JSON
+  var apidata = await response.json();
+  let stateCheck = setInterval(() => {
+    if (
+      document.readyState === 'complete' &&
+      response.status >= 200 &&
+      response.status < 300
+    ) {
+      clearInterval(stateCheck);
+      // document ready
+      console.log('ready');
+      document.querySelector('#loader').style.display = 'none';
+    }
+  }, 100);
+}
+
+// Calling that async function
+getapi(API_URL);
 
 getMovies(API_URL);
 
@@ -259,13 +280,13 @@ function addMovieToLibrary(key, movie) {
   if (libraryItems === null) {
     const data = [movie];
     localStorage.setItem(key, JSON.stringify(data));
-   } else {
+  } else {
     const getLocalStorage = JSON.parse(libraryItems);
 
-  if (getLocalStorage.find(m => m.id === movie.id) === undefined) {
-    getLocalStorage.push(movie);
-    Notiflix.Notify.success('The video has been added to the list');
-    localStorage.setItem(key, JSON.stringify(getLocalStorage));
-     }
+    if (getLocalStorage.find(m => m.id === movie.id) === undefined) {
+      getLocalStorage.push(movie);
+      Notiflix.Notify.success('The video has been added to the list');
+      localStorage.setItem(key, JSON.stringify(getLocalStorage));
+    }
   }
 }
