@@ -19,9 +19,9 @@ const form = document.querySelector('#form');
 
 // Pagination elements
 
-let prev = document.querySelector('#prev');
-let current = document.querySelector('#current');
-let next = document.querySelector('#next');
+const prev = document.querySelector('#prev');
+const current = document.querySelector('#current');
+const next = document.querySelector('#next');
 
 let currentPage = 1;
 let nextPage = 2;
@@ -57,15 +57,17 @@ getMovies(API_URL);
 
 export function getMovies(url) {
   lastUrl = url;
+  console.log(lastUrl);
   fetch(url)
     .then(res => res.json())
     .then(data => {
       showMovies(data.results);
 
       currentPage = data.page;
+
       console.log(currentPage);
+
       nextPage = data.page + 1;
-      console.log(nextPage);
       prevPage = data.page - 1;
       totalPages = data.total_pages;
 
@@ -133,11 +135,7 @@ export function showMovies(data) {
           <div class="info"><h3 class="info__title">${title}</h3>
           </div>
           <div class="info ">
-            <p class="info__genres-and-year">${genreNames.join(
-              ', '
-            )} | ${release_date.slice(0, 4)} </p><span class="${getColor(
-      vote_average
-    )}">${vote_average}</span>
+            <p class="info__genres-and-year">${genreNames.join(', ')} | ${undefinedDate(release_date)} </p><span class="${getColor(vote_average)}">${vote_average}</span>
           </div>
                   
       </div>
@@ -191,6 +189,7 @@ export function showMovies(data) {
       document.querySelector('body').style.overflow = 'visible';
     });
 
+
     //  Local Storage
 
     const btnAddToWatched = document.querySelector(
@@ -223,12 +222,22 @@ function getColor(vote) {
   }
 }
 
+// Undefined release date fix
+
+function undefinedDate(release_date) {
+  if (release_date === undefined) {
+    return "N/A"
+  } else {
+    return release_date.slice(0, 4);
+  }
+}
+
+
 // Search by keyword
 
 form.addEventListener('submit', e => {
   e.preventDefault();
   const searchTerm = document.querySelector('input').value;
-  pageCall(prevPage);
   if (searchTerm) {
     getMovies(searchURL + QUERY + searchTerm);
   } else {
@@ -245,15 +254,16 @@ form.addEventListener('submit', e => {
 
 // Pagination
 
-prev.addEventListener('click', () => {
-  if (prevPage > 0) {
-    pageCall(current);
+next.addEventListener('click', () => {
+  if (nextPage > 0) {
+    pageCall(nextPage);
   }
 });
 
-next.addEventListener('click', () => {
-  if (nextPage <= totalPages) {
-    pageCall(nextPage);
+prev.addEventListener('click', () => {
+  console.log(currentPage);
+  if (prevPage <= totalPages && currentPage - 1 > 0) {
+    pageCall(prevPage);
   }
 });
 
@@ -273,6 +283,8 @@ function pageCall(page) {
     getMovies(url);
   }
 }
+
+// Local Storage
 
 function addMovieToLibrary(key, movie) {
   const libraryItems = localStorage.getItem(key);
