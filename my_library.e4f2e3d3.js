@@ -1,2 +1,0 @@
-!function(){var e=document.getElementById("myModal"),n=document.getElementById("myBtn"),o=document.getElementsByClassName("close")[0];n.onclick=function(){e.style.display="block",document.querySelector("body").style.overflow="hidden"},o.onclick=function(){e.style.display="none",document.querySelector("body").style.overflow="visible"},window.onclick=function(n){n.target==e&&(e.style.display="none")}}();
-//# sourceMappingURL=my_library.e4f2e3d3.js.map
