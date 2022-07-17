@@ -5,6 +5,8 @@ import 'notiflix/dist/notiflix-3.2.5.min.css';
 // import { genresToggle } from './genres-btn.js';
 import { genre } from './genres.js';
 
+import { getapi } from './loader.js';
+
 const API_KEY = 'api_key=d2b5af87a64d923fbc9cd42aa4272fb1';
 const BASE_URL = 'https://api.themoviedb.org/3';
 const ALL_URL = '/discover/movie?sort_by=popularity.desc&';
@@ -30,42 +32,22 @@ let lastUrl = '';
 let totalPages = 100;
 
 // API query
-async function getapi(url) {
-  // Storing response
-  const response = await fetch(url);
-
-  // Storing data in form of JSON
-  var apidata = await response.json();
-  let stateCheck = setInterval(() => {
-    if (
-      document.readyState === 'complete' &&
-      response.status >= 200 &&
-      response.status < 300
-    ) {
-      clearInterval(stateCheck);
-      // document ready
-      console.log('ready');
-      document.querySelector('#loader').style.display = 'none';
-    }
-  }, 100);
-}
-
-// Calling that async function
-getapi(API_URL);
 
 getMovies(API_URL);
 
 export function getMovies(url) {
   lastUrl = url;
-  console.log(lastUrl);
+  // console.log(lastUrl);
+
   fetch(url)
     .then(res => res.json())
     .then(data => {
+      getapi(API_URL);
       showMovies(data.results);
 
       currentPage = data.page;
 
-      console.log(currentPage);
+      // console.log(currentPage);
 
       nextPage = data.page + 1;
       prevPage = data.page - 1;
@@ -83,7 +65,6 @@ export function getMovies(url) {
         prev.classList.remove('disabled');
         next.classList.remove('disabled');
       }
-      main.scrollIntoView({ behavior: 'smooth' });
 
       if (data.results.length === 0) {
         console.log('ERROR IN SEARCH');
@@ -261,6 +242,7 @@ form.addEventListener('submit', e => {
 next.addEventListener('click', () => {
   if (nextPage > 0) {
     pageCall(nextPage);
+    main.scrollIntoView(true);
   }
 });
 
@@ -268,6 +250,7 @@ prev.addEventListener('click', () => {
   console.log(currentPage);
   if (prevPage <= totalPages && currentPage - 1 > 0) {
     pageCall(prevPage);
+    main.scrollIntoView(true);
   }
 });
 

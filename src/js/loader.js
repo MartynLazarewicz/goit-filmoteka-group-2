@@ -1,28 +1,29 @@
-// let fadeTarget = document.getElementById('loader');
+export async function getapi(url) {
+  // Storing response
+  const response = await fetch(url);
 
-// window.onload = function () {
-//   function fadeOutEffect() {
-//     let fadeEffect = setInterval(function () {
-//       if (!fadeTarget.style.opacity) {
-//         fadeTarget.style.opacity = 1;
-//       }
-//       if (fadeTarget.style.opacity > 0) {
-//         fadeTarget.style.opacity -= 0.2;
-//         // fadeEffect.style.display = 'none';
-//       }
-//       clearInterval(fadeEffect);
-//     }, 100);
-//   }
+  const loader = document.querySelector('#loader');
 
-//   fadeOutEffect(fadeTarget);
-// };
+  loader.classList.remove('hideLoader');
+  loader.classList.add('showLoader');
 
-// document.onreadystatechange = function () {
-//   if (document.readyState !== 'complete') {
-//     document.querySelector('body').style.visibility = 'hidden';
-//     document.querySelector('#loader').style.visibility = 'visible';
-//   } else {
-//     document.querySelector('#loader').style.display = 'none';
-//     document.querySelector('body').style.visibility = 'visible';
-//   }
-// };
+  // Storing data in form of JSON
+  var apidata = response.json();
+  let stateCheck = setInterval(() => {
+    const allImagesLoaded =
+      [...document.querySelectorAll('img')]
+        .map(x => x.complete)
+        .indexOf(false) === -1;
+    if (response.status >= 200 && response.status < 300 && allImagesLoaded) {
+      clearInterval(stateCheck);
+      // document ready
+      // console.log('ready');
+      const myTimeout = setTimeout(myFunc, 300);
+
+      function myFunc() {
+        loader.classList.add('hideLoader');
+        loader.classList.remove('showLoader');
+      }
+    }
+  }, 100);
+}
