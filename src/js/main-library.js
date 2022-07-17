@@ -17,6 +17,7 @@ for (let movie of libraryWatched) {
   const movieEl = document.createElement('div');
   movieEl.classList.add('movie');
   const genresNames = getGenreNamesFromIds(movie.genre_ids);
+
   const movieBox = getMovieBoxView(
     movie.id,
     movie.poster_path,
