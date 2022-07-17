@@ -13,7 +13,7 @@ const getGenreNamesFromIds = function (genre_ids) {
   return genreNames;
 };
 
-for (let movie of libraryWatched) {
+libraryWatched.forEach(movie => {
   const movieEl = document.createElement('div');
   movieEl.classList.add('movie');
   const genresNames = getGenreNamesFromIds(movie.genre_ids);
@@ -37,6 +37,17 @@ for (let movie of libraryWatched) {
     genresNames,
     movie.overview
   );
+
   movieEl.innerHTML = movieBox + modal;
   mainWatched.appendChild(movieEl);
-}
+
+  document.getElementById(movie.id).addEventListener('click', () => {
+    document.getElementById('modal' + movie.id).style.display = 'block';
+    document.querySelector('body').style.overflow = 'hidden';
+  });
+
+  document.getElementById('close' + movie.id).addEventListener('click', () => {
+    document.getElementById('modal' + movie.id).style.display = 'none';
+    document.querySelector('body').style.overflow = 'visible';
+  });
+});
