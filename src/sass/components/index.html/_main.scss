@@ -8,9 +8,21 @@ main {
     width: 100%;
     margin-top: 1rem;
     border-radius: 15px;
-    box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.4);
+    // box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.4);
     padding-bottom: 10px;
     margin-inline: 20px;
+    transition: box-shadow 250ms $trans-func;
+
+    &:hover {
+      -webkit-box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.4);
+      -moz-box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.4);
+      box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.4);
+    }
+    &__info {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
     &__btn {
       background: none;
       border: none;
@@ -22,24 +34,29 @@ main {
         width: 100%;
         height: 398px;
         display: block;
+        border-radius: 5px;
       }
     }
     & .info {
-      font-family: 'Roboto';
       font-weight: 500;
       font-size: 12px;
       line-height: 14px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 10px;
       padding: 0 10px;
       &__title {
+        font-size: 12px;
+        font-weight: 700;
         text-transform: uppercase;
         color: #000000;
         margin-top: 10px;
         margin-bottom: 0px;
       }
       &__genres-and-year {
+        font-size: 12px;
+        font-weight: 500;
         color: #ff6b08;
         // padding: 0 10px;
         font-size: 15px;
@@ -49,7 +66,7 @@ main {
         background-color: #ff6b01;
         padding: 0.25rem 0.5rem;
         border-radius: 5px;
-        font-weight: bolder;
+        font-weight: 500;
 
         &.green {
           color: lightgreen;

@@ -135,7 +135,11 @@ export function showMovies(data) {
           <div class="info"><h3 class="info__title">${title}</h3>
           </div>
           <div class="info ">
-            <p class="info__genres-and-year">${genreNames.join(', ')} | ${undefinedDate(release_date)} </p><span class="${getColor(vote_average)}">${vote_average}</span>
+            <p class="info__genres-and-year">${genreNames.join(
+              ', '
+            )} | ${undefinedDate(release_date)} </p><span class="${getColor(
+      vote_average
+    )}">${vote_average}</span>
           </div>
                   
       </div>
@@ -157,12 +161,14 @@ export function showMovies(data) {
           <div class="modal-content__right-side">
           <h2 class="modal-content__title">${title}</h2>
           <div class="modal-content__items">
-            <p class="modal-content__items--vote">${vote_average} / ${vote_count}</p>
-            <p class="modal-content__items--popularity">${Math.round(
+            <p class="modal-content__items--vote"><span class="movies-info">Vote / Votes</span> <span class="vote-color">${vote_average}</span> / ${vote_count}</p>
+            <p class="modal-content__items--popularity"><span class="movies-info">Popularity</span> ${Math.round(
               popularity
             ).toLocaleString()}</p>
-            <p class="modal-content__items--title">${original_title}</p>
-            <p class="modal-content__items--genre">${genreNames[0]}</p>
+            <p class="modal-content__items--title"><span class="movies-info">Original Title</span> ${original_title}</p>
+            <p class="modal-content__items--genre"><span class="movies-info">Genre</span> ${
+              genreNames[0]
+            }</p>
           </div>
           <h3 class="modal-content__about">About</h3>
           <p class="modal-content__description">${overview}</p>
@@ -188,7 +194,6 @@ export function showMovies(data) {
       document.getElementById('modal' + id).style.display = 'none';
       document.querySelector('body').style.overflow = 'visible';
     });
-
 
     //  Local Storage
 
@@ -226,12 +231,11 @@ function getColor(vote) {
 
 function undefinedDate(release_date) {
   if (release_date === undefined) {
-    return "N/A"
+    return 'N/A';
   } else {
     return release_date.slice(0, 4);
   }
 }
-
 
 // Search by keyword
 

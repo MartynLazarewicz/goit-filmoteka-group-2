@@ -1,25 +1,44 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="pl">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>goit-filmoteka-group-2</title>
-    <!-- <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Viewport -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1"
+    />
+    <!-- Credentials -->
+    <meta
+      name="description"
+      content="Kurs: GOIT Polska, Full-Stack Developer, Group project Filmoteka"
+    />
+    <meta name="keywords" content="HTML, CSS, JS" />
+    <meta
+      name="author"
+      content="Martyn Lazarewicz, Agnieszka janowska, Jakub Pikul, Karolina Podbliska, Paweł Pałaśiński, Paweł Kłosowski"
+    />
+    <!-- CSS -->
     <link rel="stylesheet" href="./sass/index.scss" />
+    <!-- Favicon -->
+    <!-- <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" /> -->
+    <!-- Title -->
+    <title>goit-filmoteka-group-2</title>
+    <!-- JS Scripts -->
     <script type="module" src="./index.js"></script>
+    <script type="module" src="/src/js/main.js"></script>
+    <script type="module" src="/src/js/loader.js"></script>
   </head>
   <body>
     <!-- ❗️❗️❗️ Add partials like so for every page -->
-    <div id="data"></div>
 
-    <include src="./partials/header_home.html"></include>
-    <include src="./partials/main.html"></include>
+    <include src="./partials/index.html/index_header.html"></include>
+    <include src="./partials/index.html/main.html"></include>
+    <include src="./partials/pagination/pagination.html"></include>
     <include src="./partials/footer.html"></include>
-    <include src="./partials/modal-window.html"></include>
-    <script type="module" src="/src/js/main.js"></script>
-    <script type="module" src="/src/js/open-window-modal.js"></script>
-    <script type="module" src="/src/js/developers_footer.js"></script>
-    <include src="./partials/loader.html"></include>
-    <script type="module" src="/src/js/loader.js"></script>
+    <include src="./partials/modal/modal_window.html"></include>
+    <!-- <script type="module" src="/src/js/open-window-modal.js"></script>
+    <script type="module" src="/src/js/developers_footer.js"></script> -->
+    <include src="./partials/loader/loader.html"></include>
   </body>
 </html>
