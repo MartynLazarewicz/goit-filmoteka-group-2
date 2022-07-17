@@ -42,9 +42,9 @@ export function getMovies(url) {
   fetch(url)
     .then(res => res.json())
     .then(data => {
-      console.log(data.results)
+      console.log(data.results);
       getapi(API_URL);
-      movies = data.results
+      movies = data.results;
       showMovies(movies);
 
       currentPage = data.page;
@@ -73,7 +73,7 @@ export function getMovies(url) {
         //   'Sorry, there are no images matching your search query. Please try again.'
         // );
         // getMovies(API_URL);
-        warning.classList.add('show')
+        warning.classList.add('show');
       } else {
         warning.classList.remove('show');
       }
@@ -225,7 +225,6 @@ form.addEventListener('submit', e => {
   const searchTerm = document.querySelector('input').value;
   if (searchTerm) {
     getMovies(searchURL + QUERY + searchTerm);
-    
   } else {
     getMovies(API_URL);
   }
@@ -241,7 +240,7 @@ form.addEventListener('submit', e => {
 // Pagination
 
 next.addEventListener('click', () => {
-  if (nextPage > 0) {
+  if (nextPage <= totalPages && currentPage + 1 > 0) {
     pageCall(nextPage);
     main.scrollIntoView(true);
   }
