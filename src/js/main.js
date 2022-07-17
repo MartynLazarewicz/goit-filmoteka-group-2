@@ -15,7 +15,7 @@ const QUERY = '&query=';
 export const API_URL = BASE_URL + ALL_URL + API_KEY;
 
 const searchURL = BASE_URL + '/search/movie?' + API_KEY;
-
+const warning = document.querySelector('.form__warning');
 const main = document.querySelector('#main');
 const form = document.querySelector('#form');
 
@@ -32,7 +32,7 @@ let lastUrl = '';
 let totalPages = 100;
 
 // API query
-
+let movies;
 getMovies(API_URL);
 
 export function getMovies(url) {
@@ -42,8 +42,10 @@ export function getMovies(url) {
   fetch(url)
     .then(res => res.json())
     .then(data => {
+      console.log(data.results)
       getapi(API_URL);
-      showMovies(data.results);
+      movies = data.results
+      showMovies(movies);
 
       currentPage = data.page;
 
@@ -67,15 +69,13 @@ export function getMovies(url) {
       }
 
       if (data.results.length === 0) {
-        console.log('ERROR IN SEARCH');
-        getMovies(API_URL);
-      }
-
-      if (data.results.length === 0) {
-        Notiflix.Notify.failure(
-          'Sorry, there are no images matching your search query. Please try again.'
-        );
-        getMovies(API_URL);
+        // Notiflix.Notify.failure(
+        //   'Sorry, there are no images matching your search query. Please try again.'
+        // );
+        // getMovies(API_URL);
+        warning.classList.add('show')
+      } else {
+        warning.classList.remove('show');
       }
     });
 }
@@ -225,6 +225,7 @@ form.addEventListener('submit', e => {
   const searchTerm = document.querySelector('input').value;
   if (searchTerm) {
     getMovies(searchURL + QUERY + searchTerm);
+    
   } else {
     getMovies(API_URL);
   }
