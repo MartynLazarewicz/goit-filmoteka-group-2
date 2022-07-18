@@ -22,14 +22,28 @@ const form = document.querySelector('#form');
 // Pagination elements
 
 const prev = document.querySelector('#prev');
+const first = document.querySelector('#first');
+const prevDotts = document.querySelector('#prev-dotts');
+const prev2 = document.querySelector('#prev-2');
+const prev1 = document.querySelector('#prev-1');
 const current = document.querySelector('#current');
+const next1 = document.querySelector('#next-1');
+const next2 = document.querySelector('#next-2');
+const nextDotts = document.querySelector('#next-dotts');
+const total = document.querySelector('#total');
 const next = document.querySelector('#next');
 
+const firstPage = 1;
+let prev2Page = -1;
+let prev1Page = 0;
 let currentPage = 1;
+let next1Page = 2;
+let next2Page = 3;
 let nextPage = 2;
 let prevPage = 3;
-let lastUrl = '';
 let totalPages = 100;
+
+let lastUrl = '';
 
 // API query
 let movies;
@@ -48,31 +62,256 @@ export function getMovies(url) {
       showMovies(movies);
 
       currentPage = data.page;
+      if (currentPage > 1) {
+        prev1Page = data.page - 1;
+      }
+      prev2Page = data.page - 2;
 
-      // console.log(currentPage);
+      console.log('THIS: ' + currentPage + ' of ' + totalPages);
 
-      nextPage = data.page + 1;
-      prevPage = data.page - 1;
+      prev2Page = currentPage - 2;
+      prev1Page = currentPage - 1;
+      nextPage = currentPage + 1;
+      next1Page = currentPage + 1;
+      next2Page = currentPage + 2;
+      prevPage = currentPage - 1;
       totalPages = data.total_pages;
 
+      prev2.innerHTML = prev2Page;
+      prev1.innerHTML = prev1Page;
       current.innerText = currentPage;
+      next1.innerHTML = next1Page;
+      next2.innerHTML = next2Page;
+      total.innerHTML = totalPages;
 
-      if (currentPage <= 1) {
+      if (totalPages === 1) {
+        prevDotts.style.display = 'none';
+        first.style.display = 'none';
+        prev2.style.display = 'none';
+        prev1.style.display = 'none';
         prev.classList.add('disabled');
-        next.classList.remove('disabled');
-      } else if (currentPage >= totalPages) {
-        prev.classList.remove('disabled');
+        prev.innerHTML = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M12.6666 8H3.33325" stroke="grey" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M7.99992 12.6668L3.33325 8.00016L7.99992 3.3335" stroke="grey" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+        next1.style.display = 'none';
+        next2.style.display = 'none';
+        nextDotts.style.display = 'none';
+        total.style.display = 'none';
         next.classList.add('disabled');
-      } else {
-        prev.classList.remove('disabled');
+        next.innerHTML = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M3.33341 8H12.6667" stroke="grey" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M8.00008 12.6668L12.6667 8.00016L8.00008 3.3335" stroke="grey" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+      } else if (totalPages === 2 && currentPage === 1) {
+        prevDotts.style.display = 'none';
+        first.style.display = 'none';
+        prev2.style.display = 'none';
+        prev1.style.display = 'none';
+        prev.classList.add('disabled');
+        prev.innerHTML = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M12.6666 8H3.33325" stroke="grey" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M7.99992 12.6668L3.33325 8.00016L7.99992 3.3335" stroke="grey" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+        next1.style.display = 'flex';
+        next2.style.display = 'none';
+        nextDotts.style.display = 'none';
+        total.style.display = 'none';
         next.classList.remove('disabled');
+        next.innerHTML = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M3.33341 8H12.6667" stroke="black" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M8.00008 12.6668L12.6667 8.00016L8.00008 3.3335" stroke="black" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+      } else if (totalPages === 2 && currentPage === 2) {
+        prevDotts.style.display = 'none';
+        first.style.display = 'none';
+        prev2.style.display = 'none';
+        prev1.style.display = 'flex';
+        prev.classList.remove('disabled');
+        prev.innerHTML = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M12.6666 8H3.33325" stroke="black" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M7.99992 12.6668L3.33325 8.00016L7.99992 3.3335" stroke="black" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+        next1.style.display = 'flex';
+        next2.style.display = 'none';
+        nextDotts.style.display = 'none';
+        total.style.display = 'none';
+        next.classList.add('disabled');
+        next.innerHTML = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M3.33341 8H12.6667" stroke="grey" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M8.00008 12.6668L12.6667 8.00016L8.00008 3.3335" stroke="grey" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+      } else if (totalPages === 3 && currentPage === 1) {
+        prevDotts.style.display = 'none';
+        first.style.display = 'none';
+        prev2.style.display = 'none';
+        prev1.style.display = 'none';
+        prev.classList.add('disabled');
+        prev.innerHTML = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M12.6666 8H3.33325" stroke="grey" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M7.99992 12.6668L3.33325 8.00016L7.99992 3.3335" stroke="grey" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+        next1.style.display = 'flex';
+        next2.style.display = 'flex';
+        nextDotts.style.display = 'none';
+        total.style.display = 'none';
+        next.classList.remove('disabled');
+        next.innerHTML = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M3.33341 8H12.6667" stroke="black" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M8.00008 12.6668L12.6667 8.00016L8.00008 3.3335" stroke="black" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+      } else if (totalPages === 3 && currentPage === 2) {
+        prevDotts.style.display = 'none';
+        first.style.display = 'none';
+        prev2.style.display = 'none';
+        prev1.style.display = 'flex';
+        prev.classList.remove('disabled');
+        prev.innerHTML = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M12.6666 8H3.33325" stroke="grey" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M7.99992 12.6668L3.33325 8.00016L7.99992 3.3335" stroke="grey" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+        next1.style.display = 'flex';
+        next2.style.display = 'none';
+        nextDotts.style.display = 'none';
+        total.style.display = 'none';
+        next.classList.remove('disabled');
+        next.innerHTML = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M3.33341 8H12.6667" stroke="black" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M8.00008 12.6668L12.6667 8.00016L8.00008 3.3335" stroke="black" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+      } else if (totalPages === 3 && currentPage === 3) {
+        prevDotts.style.display = 'none';
+        first.style.display = 'none';
+        prev2.style.display = 'flex';
+        prev1.style.display = 'flex';
+        prev.classList.remove('disabled');
+        prev.innerHTML = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M12.6666 8H3.33325" stroke="black" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M7.99992 12.6668L3.33325 8.00016L7.99992 3.3335" stroke="black" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+        next1.style.display = 'none';
+        next2.style.display = 'none';
+        nextDotts.style.display = 'none';
+        total.style.display = 'none';
+        next.classList.add('disabled');
+        next.innerHTML = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M3.33341 8H12.6667" stroke="grey" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M8.00008 12.6668L12.6667 8.00016L8.00008 3.3335" stroke="grey" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+      } else if (totalPages > 3 && currentPage === 1) {
+        first.style.display = 'none';
+        prevDotts.style.display = 'none';
+        prev1.style.display = 'none';
+        prev2.style.display = 'none';
+        prev.classList.add('disabled');
+        prev.innerHTML = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M12.6666 8H3.33325" stroke="grey" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M7.99992 12.6668L3.33325 8.00016L7.99992 3.3335" stroke="grey" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+        next.classList.remove('disabled');
+        next.innerHTML = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M3.33341 8H12.6667" stroke="black" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M8.00008 12.6668L12.6667 8.00016L8.00008 3.3335" stroke="black" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+      } else if (totalPages > 3 && currentPage === 2) {
+        prevDotts.style.display = 'none';
+        first.style.display = 'none';
+        prev1.style.display = 'flex';
+        prev2.style.display = 'none';
+        prev.classList.remove('disabled');
+        prev.innerHTML = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M12.6666 8H3.33325" stroke="black" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M7.99992 12.6668L3.33325 8.00016L7.99992 3.3335" stroke="black" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+        next.classList.remove('disabled');
+        next.innerHTML = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M3.33341 8H12.6667" stroke="black" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M8.00008 12.6668L12.6667 8.00016L8.00008 3.3335" stroke="black" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+      } else if (totalPages > 3 && currentPage === 3) {
+        prevDotts.style.display = 'none';
+        first.style.display = 'none';
+        prev1.style.display = 'flex';
+        prev2.style.display = 'flex';
+        prev.innerHTML = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M12.6666 8H3.33325" stroke="black" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M7.99992 12.6668L3.33325 8.00016L7.99992 3.3335" stroke="black" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+        next.classList.remove('disabled');
+        next.innerHTML = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M3.33341 8H12.6667" stroke="black" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M8.00008 12.6668L12.6667 8.00016L8.00008 3.3335" stroke="black" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+      } else if (currentPage === 4) {
+        prevDotts.style.display = 'none';
+        first.style.display = 'flex';
+        prev1.style.display = 'flex';
+        prev2.style.display = 'flex';
+        prev.innerHTML = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M12.6666 8H3.33325" stroke="black" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M7.99992 12.6668L3.33325 8.00016L7.99992 3.3335" stroke="black" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+      } else if (currentPage > 4 && currentPage < totalPages - 2) {
+        prevDotts.style.display = 'flex';
+        first.style.display = 'flex';
+        prev1.style.display = 'flex';
+        prev2.style.display = 'flex';
+        prev.innerHTML = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M12.6666 8H3.33325" stroke="black" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M7.99992 12.6668L3.33325 8.00016L7.99992 3.3335" stroke="black" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+        next.classList.remove('disabled');
+        next.innerHTML = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M3.33341 8H12.6667" stroke="black" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M8.00008 12.6668L12.6667 8.00016L8.00008 3.3335" stroke="black" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+      } else if (currentPage > 4 && currentPage === totalPages - 2) {
+        prev.innerHTML = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M12.6666 8H3.33325" stroke="black" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M7.99992 12.6668L3.33325 8.00016L7.99992 3.3335" stroke="black" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+        next1.style.display = 'flex';
+        next2.style.display = 'none';
+        nextDotts.style.display = 'none';
+        next.classList.remove('disabled');
+        next.innerHTML = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M3.33341 8H12.6667" stroke="black" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M8.00008 12.6668L12.6667 8.00016L8.00008 3.3335" stroke="black" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+      } else if (currentPage > 4 && currentPage === totalPages - 1) {
+        prev.innerHTML = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M12.6666 8H3.33325" stroke="black" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M7.99992 12.6668L3.33325 8.00016L7.99992 3.3335" stroke="black" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+        next1.style.display = 'flex';
+        next2.style.display = 'none';
+        nextDotts.style.display = 'none';
+        total.style.display = 'none';
+        next.classList.remove('disabled');
+        next.innerHTML = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M3.33341 8H12.6667" stroke="black" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M8.00008 12.6668L12.6667 8.00016L8.00008 3.3335" stroke="black" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+      } else if (currentPage > 4 && currentPage === totalPages) {
+        prev.innerHTML = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M12.6666 8H3.33325" stroke="black" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M7.99992 12.6668L3.33325 8.00016L7.99992 3.3335" stroke="black" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+        next1.style.display = 'none';
+        next2.style.display = 'none';
+        nextDotts.style.display = 'none';
+        next.classList.add('disabled');
+        next.innerHTML = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M3.33341 8H12.6667" stroke="grey" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M8.00008 12.6668L12.6667 8.00016L8.00008 3.3335" stroke="grey" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
       }
 
       if (data.results.length === 0) {
         // Notiflix.Notify.failure(
         //   'Sorry, there are no images matching your search query. Please try again.'
         // );
-        // getMovies(API_URL);
+        getMovies(API_URL);
         warning.classList.add('show');
       } else {
         warning.classList.remove('show');
@@ -239,16 +478,47 @@ form.addEventListener('submit', e => {
 
 // Pagination
 
+first.addEventListener('click', () => {
+  pageCall(1);
+  main.scrollIntoView(true);
+});
+
+prev2.addEventListener('click', () => {
+  pageCall(prev2Page);
+  main.scrollIntoView(true);
+});
+
+prev1.addEventListener('click', () => {
+  pageCall(prev1Page);
+  main.scrollIntoView(true);
+});
+
+current.addEventListener('click', () => {
+  pageCall(currentPage);
+  main.scrollIntoView(true);
+});
+
+next1.addEventListener('click', () => {
+  pageCall(next1Page);
+  main.scrollIntoView(true);
+});
+
+next2.addEventListener('click', () => {
+  pageCall(next2Page);
+  main.scrollIntoView(true);
+});
+
 next.addEventListener('click', () => {
   if (nextPage <= totalPages && currentPage + 1 > 0) {
+    console.log('NEXT: ' + nextPage);
     pageCall(nextPage);
     main.scrollIntoView(true);
   }
 });
 
 prev.addEventListener('click', () => {
-  console.log(currentPage);
   if (prevPage <= totalPages && currentPage - 1 > 0) {
+    console.log('PREV: ' + prevPage);
     pageCall(prevPage);
     main.scrollIntoView(true);
   }
