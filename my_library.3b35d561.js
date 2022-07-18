@@ -1,0 +1,2 @@
+const e=document.getElementById("btn-watched"),t=document.getElementById("btn-queue");e.onclick=function(){document.getElementById("main-watched").style.display="flex",document.getElementById("main-queue").style.display="none"},t.onclick=function(){document.getElementById("main-watched").style.display="none",document.getElementById("main-queue").style.display="flex"};
+//# sourceMappingURL=my_library.3b35d561.js.map
