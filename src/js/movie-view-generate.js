@@ -65,6 +65,10 @@ export const getMovieBoxView = function (
           </div>
           <h3 class="modal-content__about">About</h3>
           <p class="modal-content__description">${overview}</p>
+          <div class="modal-content__buttons">
+            <button type="button" class="modal-content__buttons--remove-from-watched">REMOVE FROM WATCHED</button>
+            <button type="button" class="modal-content__buttons--remove-from-queue">REMOVE FROM QUEUE</button>
+            </div>
           </div>
         </div>
         </div>
