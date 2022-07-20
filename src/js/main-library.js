@@ -43,7 +43,23 @@ libraryWatched.forEach(movie => {
   movieEl.innerHTML = movieBox + modal;
   mainWatched.appendChild(movieEl);
 
-  document.getElementById(movie.id).addEventListener('click', () => {
+  const watchedMovie = document.getElementById(movie.id);
+ 
+  watchedMovie.addEventListener('click', () => {
+    
+    //document.getElementsByClassName("modal-content__buttons--remove-from-watched").style.display = 'block';
+    
+    const watchedRemoveButton = document.querySelector(
+      `.modal-content__buttons--remove-from-watched`
+    );
+
+    watchedRemoveButton.addEventListener('click', () => {
+      const watchedMovieId = watchedMovie.id;
+      const watchedMovieFromLibraryById = document.getElementById(watchedMovieId);
+      const watchedMovieFromLibraryByIdParent = watchedMovieFromLibraryById.parentNode;
+      watchedMovieFromLibraryByIdParent.remove();
+    });
+  
     document.getElementById('modal' + movie.id).style.display = 'block';
     document.querySelector('body').style.overflow = 'hidden';
   });
@@ -82,7 +98,24 @@ libraryQueue.forEach(movie => {
   movieEl.innerHTML = movieBox + modal;
   mainQueue.appendChild(movieEl);
 
-  document.getElementById(movie.id).addEventListener('click', () => {
+  const queueMovie = document.getElementById(movie.id);
+    
+  queueMovie.addEventListener('click', () => {
+    
+    //document.getElementsByClassName("modal-content__buttons--remove-from-queue").style.display = 'block';
+    
+    const queueRemoveButton = document.querySelector(
+      `.modal-content__buttons--remove-from-queue`
+    );
+
+    queueRemoveButton.addEventListener('click', () => {
+      const queueMovieId = queueMovie.id;
+      const queueMovieFromLibraryById = document.getElementById(queueMovieId);
+      const queueMovieFromLibraryByIdParent = queueMovieFromLibraryById.parentNode;
+      queueMovieFromLibraryByIdParent.remove();
+    });
+
+
     document.getElementById('modal' + movie.id).style.display = 'block';
     document.querySelector('body').style.overflow = 'hidden';
   });
