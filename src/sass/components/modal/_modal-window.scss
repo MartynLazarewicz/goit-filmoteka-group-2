@@ -44,10 +44,12 @@
   }
 
   &__img {
+      height: 356.57px;
+      width: 477px;
     & img {
       background-color: rgb(0, 0, 0);
-      height: 356.57px;
-      width: 100%;
+      height: inherit;
+      width: auto;
       border-radius: 5px;
     }
   }
@@ -160,8 +162,8 @@
       height: 477px;
 
       img {
-        width: inherit;
-        height: inherit;
+      height: inherit;
+      width: auto;
       }
     }
 
