@@ -1,2 +1,2 @@
 !function(){var e=document.getElementById("myModal"),n=document.getElementById("myBtn"),o=document.getElementsByClassName("close")[0];n.onclick=function(){e.style.display="block",document.querySelector("body").style.overflow="hidden"},o.onclick=function(){e.style.display="none",document.querySelector("body").style.overflow="visible"},window.onclick=function(n){n.target==e&&(e.style.display="none")},document.addEventListener("keydown",(function(n){"Escape"===n.key&&(e.classList.remove("show"),window.close())}))}();
-//# sourceMappingURL=index.03fb4d49.js.map
+//# sourceMappingURL=my_library.b365a799.js.map
