@@ -29,8 +29,7 @@ window.onclick = function (event) {
   
 document.addEventListener('keydown', event => {
   if (event.key === 'Escape') {
-    modal.classList.remove('show')
-    window.close();
+    modal.style.display = 'none';
   }
 });
 
