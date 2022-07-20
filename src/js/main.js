@@ -308,14 +308,11 @@ export function getMovies(url) {
       }
 
       if (data.results.length === 0) {
-        // Notiflix.Notify.failure(
-        //   'Sorry, there are no images matching your search query. Please try again.'
-        // );
-        getMovies(API_URL);
         warning.classList.add('show');
       } else {
         warning.classList.remove('show');
       }
+      
     });
 }
 
@@ -551,11 +548,15 @@ function addMovieToLibrary(key, movie) {
     localStorage.setItem(key, JSON.stringify(data));
   } else {
     const getLocalStorage = JSON.parse(libraryItems);
-
+  
     if (getLocalStorage.find(m => m.id === movie.id) === undefined) {
       getLocalStorage.push(movie);
       Notiflix.Notify.success('The video has been added to the list');
       localStorage.setItem(key, JSON.stringify(getLocalStorage));
+    } if (getLocalStorage.find(m => m.id === movie.id) === undefined) {
+      getLocalStorage.push(movie);
+      localStorage.setItem(key, JSON.stringify(getLocalStorage));
     }
+     Notiflix.Notify.success('The video is on to the list');
   }
 }

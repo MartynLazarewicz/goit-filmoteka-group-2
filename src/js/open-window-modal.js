@@ -1,5 +1,5 @@
 const modal = document.getElementById('myModal');
-
+let esc;
 // Get the button that opens the modal
 const btn = document.getElementById('myBtn');
 
@@ -24,3 +24,14 @@ window.onclick = function (event) {
     modal.style.display = 'none';
   }
 };
+
+  
+  
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape') {
+    modal.classList.remove('show')
+    window.close();
+  }
+});
+
+
