@@ -411,6 +411,13 @@ export function showMovies(data) {
       document.getElementById('modal' + id).style.display = 'none';
       document.querySelector('body').style.overflow = 'visible';
     });
+    
+    document.addEventListener('keydown', event => {
+  if (event.key === 'Escape') {
+    modal.classList.remove('show')
+  }
+});
+
 
     //  Local Storage
 
