@@ -47,8 +47,6 @@ libraryWatched.forEach(movie => {
  
   watchedMovie.addEventListener('click', () => {
     
-    //document.getElementsByClassName("modal-content__buttons--remove-from-watched").style.display = 'block';
-    
     const watchedRemoveButton = document.querySelector(
       `.modal-content__buttons--remove-from-watched`
     );
@@ -58,6 +56,27 @@ libraryWatched.forEach(movie => {
       const watchedMovieFromLibraryById = document.getElementById(watchedMovieId);
       const watchedMovieFromLibraryByIdParent = watchedMovieFromLibraryById.parentNode;
       watchedMovieFromLibraryByIdParent.remove();
+      
+      const storageLibraryWatched = JSON.parse(localStorage.libraryWatched);
+      const lengthOfLibraryWatched = storageLibraryWatched.length;
+
+      for (let i = 0; i <= lengthOfLibraryWatched; ++i){
+
+        //let filmFromStorage = storageLibraryWatched[i].id;
+        const watchedMovieIdInt = parseInt(watchedMovieId);
+
+        if (storageLibraryWatched[i].id === watchedMovieIdInt) {
+          alert('film do usunięcia');
+          storageLibraryWatched[i].remove();
+          reload();
+          break;
+          
+        }
+        else {
+          alert(storageLibraryWatched[i].id);
+          alert('X'+watchedMovieId);
+        }
+      }
     });
   
     document.getElementById('modal' + movie.id).style.display = 'block';
@@ -101,8 +120,6 @@ libraryQueue.forEach(movie => {
   const queueMovie = document.getElementById(movie.id);
     
   queueMovie.addEventListener('click', () => {
-    
-    //document.getElementsByClassName("modal-content__buttons--remove-from-queue").style.display = 'block';
     
     const queueRemoveButton = document.querySelector(
       `.modal-content__buttons--remove-from-queue`
