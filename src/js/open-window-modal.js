@@ -13,20 +13,19 @@ btn.onclick = function () {
 };
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function () {
-  modal.style.display = 'none';
-  document.querySelector('body').style.overflow = 'visible';
-};
+span.addEventListener('click', () => {
+     modal.style.display = 'none';
+    document.querySelector('body').style.overflow = 'visible';
+}
+)
 
 // When the user clicks anywhere outside of the modal, close it
-window.onclick = function (event) {
+modal.onclick = function (event) {
   if (event.target == modal) {
     modal.style.display = 'none';
   }
 };
 
-  
-  
 document.addEventListener('keydown', event => {
   if (event.key === 'Escape') {
     modal.style.display = 'none';

@@ -44,29 +44,48 @@ libraryWatched.forEach(movie => {
   mainWatched.appendChild(movieEl);
 
   const watchedMovie = document.getElementById(movie.id);
- 
+
   watchedMovie.addEventListener('click', () => {
-    
     //document.getElementsByClassName("modal-content__buttons--remove-from-watched").style.display = 'block';
-    
+
     const watchedRemoveButton = document.querySelector(
       `.modal-content__buttons--remove-from-watched`
     );
 
     watchedRemoveButton.addEventListener('click', () => {
       const watchedMovieId = watchedMovie.id;
-      const watchedMovieFromLibraryById = document.getElementById(watchedMovieId);
-      const watchedMovieFromLibraryByIdParent = watchedMovieFromLibraryById.parentNode;
+      const watchedMovieFromLibraryById =
+        document.getElementById(watchedMovieId);
+      const watchedMovieFromLibraryByIdParent =
+        watchedMovieFromLibraryById.parentNode;
       watchedMovieFromLibraryByIdParent.remove();
     });
-  
+
     document.getElementById('modal' + movie.id).style.display = 'block';
     document.querySelector('body').style.overflow = 'hidden';
   });
 
+  // When the user clicks on <span> (x), close the modal
   document.getElementById('close' + movie.id).addEventListener('click', () => {
     document.getElementById('modal' + movie.id).style.display = 'none';
     document.querySelector('body').style.overflow = 'visible';
+  });
+
+  //When the user clicks anywhere outside of the modal, close it
+  const modalWindow = document.getElementById('modal' + movie.id);
+  document.getElementById('modal' + movie.id).addEventListener('click', e => {
+    if (e.target == modalWindow) {
+      document.getElementById('modal' + movie.id).style.display = 'none';
+      document.querySelector('body').style.overflow = 'visible';
+    }
+  });
+
+  // When the user pressed esc, close the modal
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      document.getElementById('modal' + movie.id).style.display = 'none';
+      document.querySelector('body').style.overflow = 'visible';
+    }
   });
 });
 

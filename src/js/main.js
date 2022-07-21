@@ -402,22 +402,32 @@ export function showMovies(data) {
     movieEl.innerHTML = movieBox + modal;
     main.appendChild(movieEl);
 
+    // When the user clicks the button, open the modal
     document.getElementById(id).addEventListener('click', () => {
       document.getElementById('modal' + id).style.display = 'block';
       document.querySelector('body').style.overflow = 'hidden';
     });
-
+    // When the user clicks on <span> (x), close the modal
     document.getElementById('close' + id).addEventListener('click', () => {
       document.getElementById('modal' + id).style.display = 'none';
       document.querySelector('body').style.overflow = 'visible';
     });
-    
-    document.addEventListener('keydown', event => {
-  if (event.key === 'Escape') {
-    modal.classList.remove('show')
-  }
-});
+    //When the user clicks anywhere outside of the modal, close it
+    const modalWindow = document.getElementById('modal' + id);
+    modalWindow.addEventListener('click', e => {
+      if (e.target == modalWindow) {
+        document.getElementById('modal' + id).style.display = 'none';
+        document.querySelector('body').style.overflow = 'visible';
+      }
+    });
 
+    // When the user pressed esc, close the modal
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        document.getElementById('modal' + id).style.display = 'none';
+        document.querySelector('body').style.overflow = 'visible';
+      }
+    });
 
     //  Local Storage
 
