@@ -57,7 +57,7 @@ window.getMovies = function getMovies(url, page) {
       return res.json();
     })
     .then(data => {
-      totalPages = data.total_pages = 500;
+      let totalPages = data.total_pages = 500;
       page = data.page;
       data = data.results;
       pagination.innerHTML = createPagination(totalPages, page);
