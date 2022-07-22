@@ -1,2 +1,0 @@
-const e=document.getElementById("myModal");const t=document.getElementById("myBtn"),n=document.getElementsByClassName("close")[0];t.onclick=function(){e.style.display="block",document.querySelector("body").style.overflow="hidden"},n.addEventListener("click",(()=>{e.style.display="none",document.querySelector("body").style.overflow="visible"})),e.onclick=function(t){t.target==e&&(e.style.display="none")},document.addEventListener("keydown",(t=>{"Escape"===t.key&&(e.style.display="none")}));
-//# sourceMappingURL=my_library.1e79e67f.js.map

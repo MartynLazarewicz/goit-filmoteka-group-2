@@ -1,2 +1,0 @@
-!function(){var e=document.getElementById("myModal"),n=document.getElementById("myBtn"),t=document.getElementsByClassName("close")[0];n.onclick=function(){e.style.display="block",document.querySelector("body").style.overflow="hidden"},t.addEventListener("click",(function(){e.style.display="none",document.querySelector("body").style.overflow="visible"})),e.onclick=function(n){n.target==e&&(e.style.display="none")},document.addEventListener("keydown",(function(n){"Escape"===n.key&&(e.style.display="none")}))}();
-//# sourceMappingURL=my_library.295c98bd.js.map

@@ -1,2 +1,0 @@
-!function(){var e=document.getElementById("btn-watched"),n=document.getElementById("btn-queue");e.onclick=function(){document.getElementById("main-watched").style.display="flex",document.getElementById("main-queue").style.display="none"},n.onclick=function(){document.getElementById("main-watched").style.display="none",document.getElementById("main-queue").style.display="flex"}}();
-//# sourceMappingURL=my_library.6d996371.js.map
