@@ -22,14 +22,14 @@ const API_URL = `${BASE_URL}${ALL_URL}${new URLSearchParams(QUERY).toString()}`;
 // const searchURL = BASE_URL + '/search/movie?' + newApi_key;
 
 window.getMovies = function getMovies(url, page) {
+  let lastUrl = url;
+  console.log('url', lastUrl);
   const loader = document.querySelector('#loader');
 
   loader.classList.remove('hideLoader');
   loader.classList.add('showLoader');
 
   main.scrollIntoView({ behavior: 'smooth' });
-
-  lastUrl = url;
 
   const QUERYNEW = {
     api_key,
