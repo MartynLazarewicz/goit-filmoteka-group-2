@@ -1,0 +1,85 @@
+@import '../../sass/variables';
+.footer {
+  background-color: $color-light-gray;
+
+  margin: 0 auto;
+  padding: 30px;
+  text-align: center;
+
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  &__rights {
+    .rights__paragraph {
+      font-size: 14px;
+      line-height: 16px;
+      font-weight: 400;
+      color: $color-gray;
+    }
+  }
+
+  &__developed {
+    .developed__paragraph {
+      font-size: 14px;
+      line-height: 16px;
+      font-weight: 400;
+      color: $color-gray;
+
+      svg {
+        margin-inline: 5px;
+      }
+    }
+  }
+
+  &__btn {
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 400;
+    border: none;
+    background-color: transparent;
+    color: $color-gray;
+    text-decoration-line: underline;
+    cursor: pointer;
+
+    transition: color 250ms $trans-func;
+
+    &:hover,
+    &:focus {
+      color: $color-secondary-active;
+    }
+  }
+}
+
+@media screen and (min-width: 320px) {
+}
+
+@media screen and (min-width: 768px) {
+  .footer {
+    &__rights {
+      .rights__paragraph {
+        font-size: 16px;
+        line-height: 19px;
+      }
+    }
+
+    &__developed {
+      .developed__paragraph {
+        font-size: 16px;
+        line-height: 19px;
+      }
+    }
+
+    &__btn {
+      font-size: 16px;
+      line-height: 19px;
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+}

@@ -1,0 +1,38 @@
+<header id="header" class="home">
+  <div class="wrapper">
+    <nav class="nav">
+      <a href="/src/index.html" class="logo">Filmoteka</a>
+      <ul class="navigation">
+        <li class="nagivation__item">
+          <a class="navigation__link link-active" href="./index.html">Home</a>
+        </li>
+        <li class="nagivation__item">
+          <a class="navigation__link" href="./myLibrary.html">My Library</a>
+        </li>
+      </ul>
+    </nav>
+
+    <div id="form" class="form">
+      <form class="search-form">
+        <div class="input__wrapper">
+          <input
+            type="text"
+            class="form__input"
+            name="query"
+            id="searchQuery"
+            placeholder="Search movies"
+            autocomplete="off"
+          />
+          <button type="submit" class="form__button">
+            <svg class="form__search" width="12" height="12">
+              <use href="./images/sprite.svg#search"></use>
+            </svg>
+          </button>
+        </div>
+      </form>
+      <div class="form__warning">
+        Search result not successful. Enter the correct movie name.
+      </div>
+    </div>
+  </div>
+</header>

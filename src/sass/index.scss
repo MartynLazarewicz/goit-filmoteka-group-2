@@ -1,12 +1,4 @@
-@import './utils/common';
-
-@import './utils/variables';
+@import './common';
+@import './variables';
+@import './wrapper';
 @import './globals';
-
-@import './components/search_form/form';
-@import './components/header';
-@import './components/index.html/main';
-@import './components/pagination/pagination';
-@import './components/footer';
-@import './components/modal/modal-window';
-@import './components/loader/loader';
