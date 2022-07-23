@@ -47,6 +47,7 @@
   font-size: 22px;
   cursor: default;
   margin: 0 5px;
+  display: none;
 }
 .pagination ul li.btn {
   padding: 0 20px;
@@ -58,4 +59,10 @@
 .pagination ul li:last-child:hover {
   color: #fff;
   background: $color-secondary-active;
+}
+
+@media screen and (min-width: 768px) {
+  .pagination ul li.dots {
+    display: flex;
+  }
 }

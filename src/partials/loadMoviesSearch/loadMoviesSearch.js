@@ -1,17 +1,18 @@
-import './loadMovies.scss';
+import '../loadMovies/loadMovies.scss';
 import '../pagination/pagination';
-import '../loadMoviesSearch/loadMoviesSearch';
+
 import { showMovies } from '../moviesListMarkup/moviesListMarkup';
-import { pagination, createPagination } from '../pagination/pagination';
+import { pagination, createPaginationSearch } from '../pagination/pagination';
+import { getMovies } from '../loadMovies/loadMovies';
 
 const main = document.querySelector('#main');
+const form = document.querySelector('#form');
 
 const api_key = 'd2b5af87a64d923fbc9cd42aa4272fb1';
-// const newApi_key = 'api_key=d2b5af87a64d923fbc9cd42aa4272fb1';
 const BASE_URL = 'https://api.themoviedb.org/3';
-const ALL_URL = '/discover/movie?sort_by=popularity.desc&';
+const ALL_URL = '/search/movie?';
 
-// const query = '&query=';
+const query = '&query=';
 const QUERY = {
   api_key,
   page: 1,
@@ -21,9 +22,9 @@ const API_URL = `${BASE_URL}${ALL_URL}${new URLSearchParams(QUERY).toString()}`;
 
 // const searchURL = BASE_URL + '/search/movie?' + newApi_key;
 
-window.getMovies = function getMovies(url, page) {
+window.getMoviesSearch = function getMoviesSearch(url, page, searchTerm) {
   let lastUrl = url;
-  // console.log('url', lastUrl);
+  searchTerm = document.querySelector('input').value;
   const loader = document.querySelector('#loader');
 
   loader.classList.remove('hideLoader');
@@ -31,18 +32,14 @@ window.getMovies = function getMovies(url, page) {
 
   main.scrollIntoView({ behavior: 'smooth' });
 
-  const QUERYNEW = {
+  const QUERY = {
     api_key,
     page,
   };
 
   const API_URLNEW = `${BASE_URL}${ALL_URL}${new URLSearchParams(
-    QUERYNEW
-  ).toString()}`;
-
-  // console.log(url);
-
-  // console.log(API_URLNEW);
+    QUERY
+  ).toString()}${'&query='}${searchTerm}`;
 
   fetch(API_URLNEW, {
     method: 'GET',
@@ -57,13 +54,25 @@ window.getMovies = function getMovies(url, page) {
       return res.json();
     })
     .then(data => {
-      let totalPages = (data.total_pages = 500);
+      let totalPages = data.total_pages;
       page = data.page;
       data = data.results;
-      pagination.innerHTML = createPagination(totalPages, page);
+      pagination.innerHTML = createPaginationSearch(totalPages, page);
       showMovies(data);
     })
     .catch(error => console.log(error));
 };
 
-getMovies(API_URL);
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  let searchTerm = document.querySelector('input').value;
+  if (searchTerm === 0) {
+    console.log('no movies');
+    // console.log(getMoviesSearch());
+  } else {
+    // getMovies(API_URL);
+    getMoviesSearch(API_URL + query + searchTerm);
+
+    // document.createElement('div');
+  }
+});
