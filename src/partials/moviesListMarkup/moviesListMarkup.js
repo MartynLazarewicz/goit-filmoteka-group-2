@@ -92,6 +92,13 @@ export function showMovies(data) {
       document.getElementById('modal' + id).style.display = 'block';
       document.querySelector('body').style.overflow = 'hidden';
     });
+    const modalWindow = document.getElementById('modal' + id);
+    modalWindow.addEventListener('click', e => {
+      if (e.target == modalWindow) {
+        document.getElementById('modal' + id).style.display = 'none';
+        document.querySelector('body').style.overflow = 'visible';
+      }
+    });
 
     document.getElementById('close' + id).addEventListener('click', () => {
       document.getElementById('modal' + id).style.display = 'none';
