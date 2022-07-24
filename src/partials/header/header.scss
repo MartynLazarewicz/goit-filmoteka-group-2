@@ -123,7 +123,8 @@
   transition: background-color 250ms $trans-func, border-color 250ms $trans-func,
     box-shadow 250ms $trans-func;
 
-  &:hover {
+  &:hover,
+  &:focus {
     background-color: $color-secondary-active;
     border-color: $color-secondary-active;
     -webkit-box-shadow: 0px 0px 100px -28px rgba(255, 107, 1, 1);

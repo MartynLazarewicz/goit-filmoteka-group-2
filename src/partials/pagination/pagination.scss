@@ -18,11 +18,14 @@
   }
 }
 .pagination ul li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: #000;
   list-style: none;
-  line-height: 45px;
+  line-height: 30px;
   text-align: center;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 500;
   cursor: pointer;
   user-select: none;
@@ -30,18 +33,17 @@
 }
 .pagination ul li.numb {
   list-style: none;
-  height: 45px;
-  max-width: 150px;
-  min-width: 45px;
+  height: 35px;
+  width: 35px;
   margin: 0 5px;
-  line-height: 45px;
+  line-height: 30px;
   border-radius: 5px;
 }
 .pagination ul li.numb.first {
-  margin: 0px 5px 0 0;
+  display: none;
 }
 .pagination ul li.numb.last {
-  margin: 0px 0 0 5px;
+  display: none;
 }
 .pagination ul li.dots {
   font-size: 22px;
@@ -50,7 +52,7 @@
   display: none;
 }
 .pagination ul li.btn {
-  padding: 0 20px;
+  padding: 0 10px;
   border-radius: 5px;
 }
 .pagination li.active,
@@ -63,6 +65,12 @@
 
 @media screen and (min-width: 768px) {
   .pagination ul li.dots {
+    display: flex;
+  }
+  .pagination ul li.numb.first {
+    display: flex;
+  }
+  .pagination ul li.numb.last {
     display: flex;
   }
 }
