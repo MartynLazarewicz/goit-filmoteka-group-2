@@ -66,13 +66,12 @@ window.getMoviesSearch = function getMoviesSearch(url, page, searchTerm) {
 form.addEventListener('submit', e => {
   e.preventDefault();
   let searchTerm = document.querySelector('input').value;
-  if (searchTerm === 0) {
-    console.log('no movies');
-    // console.log(getMoviesSearch());
-  } else {
-    // getMovies(API_URL);
-    getMoviesSearch(API_URL + query + searchTerm);
-
-    // document.createElement('div');
+    if (searchTerm.length === 0) {
+        document.querySelector('.form__warning').classList.add('show');
+      } else {
+        document.querySelector('.form__warning').classList.remove('show');
+      }
+      getMoviesSearch(API_URL + query + searchTerm);
+  
   }
-});
+);
