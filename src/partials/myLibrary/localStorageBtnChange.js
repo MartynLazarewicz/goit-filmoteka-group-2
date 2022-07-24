@@ -1,15 +1,25 @@
 const btnWatched = document.getElementById('btn-watched');
 const btnQueue = document.getElementById('btn-queue');
 
-function eventWatched() {
-  document.getElementById('main-watched').style.display = 'flex';
-  document.getElementById('main-queue').style.display = 'none';
-}
+const mainLibrary = document.querySelector('#mainLibrary');
 
-function eventQueue() {
-  document.getElementById('main-watched').style.display = 'none';
-  document.getElementById('main-queue').style.display = 'flex';
-}
+import { showLocalQueue, showLocalWatched } from './myLibrary';
 
-btnWatched.onclick = eventWatched;
-btnQueue.onclick = eventQueue;
+btnWatched.addEventListener('click', () => {
+  mainLibrary.innerHTML = '';
+  showLocalWatched();
+
+  if (btnQueue.classList.contains('library__button--active')) {
+    btnQueue.classList.remove('library__button--active');
+  }
+  btnWatched.classList.add('library__button--active');
+});
+
+btnQueue.addEventListener('click', () => {
+  mainLibrary.innerHTML = '';
+  showLocalQueue();
+  if (btnWatched.classList.contains('library__button--active')) {
+    btnWatched.classList.remove('library__button--active');
+  }
+  btnQueue.classList.add('library__button-active');
+});
