@@ -70,19 +70,6 @@ window.getMoviesSearch = function getMoviesSearch(url, page, searchTerm) {
     .catch(error => console.log(error));
 };
 
-// form.addEventListener('submit', e => {
-//   e.preventDefault();
-//   let searchTerm = document.querySelector('input').value;
-//   console.log(searchTerm.length);
-//   if (searchTerm.length === 0) {
-//     document.querySelector('.form__warning').classList.add('show');
-//   } else {
-//     document.querySelector('.form__warning').classList.remove('show');
-//     getMovies();
-//   }
-//   getMoviesSearch(API_URL + query + searchTerm);
-// });
-
 form.addEventListener('submit', e => {
   e.preventDefault();
   let searchTerm = document.querySelector('input').value;
