@@ -76,12 +76,9 @@ form.addEventListener('submit', e => {
 
   if (searchTerm.length === 0) {
     document.querySelector('.form__warning').classList.add('show');
-    getMovies();
   } else {
     document.querySelector('.form__warning').classList.remove('show');
 
     getMoviesSearch(API_URL + query + searchTerm);
   }
-  //location.reload();
-  // }
 });
