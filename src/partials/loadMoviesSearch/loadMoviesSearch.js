@@ -57,21 +57,38 @@ window.getMoviesSearch = function getMoviesSearch(url, page, searchTerm) {
       let totalPages = data.total_pages;
       page = data.page;
       data = data.results;
+
       pagination.innerHTML = createPaginationSearch(totalPages, page);
       showMovies(data);
-    })
-    .catch(error => console.log(error));
-};
 
-form.addEventListener('submit', e => {
-  e.preventDefault();
-  let searchTerm = document.querySelector('input').value;
-    if (searchTerm.length === 0) {
+      if (data.length === 0) {
         document.querySelector('.form__warning').classList.add('show');
       } else {
         document.querySelector('.form__warning').classList.remove('show');
       }
-      getMoviesSearch(API_URL + query + searchTerm);
-  
+    })
+    .catch(error => console.log(error));
+};
+
+// form.addEventListener('submit', e => {
+//   e.preventDefault();
+//   let searchTerm = document.querySelector('input').value;
+//   console.log(searchTerm.length);
+//   if (searchTerm.length === 0) {
+//     document.querySelector('.form__warning').classList.add('show');
+//   } else {
+//     document.querySelector('.form__warning').classList.remove('show');
+//     getMovies();
+//   }
+//   getMoviesSearch(API_URL + query + searchTerm);
+// });
+
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  let searchTerm = document.querySelector('input').value;
+  if (searchTerm.length !== 0) {
+    getMoviesSearch(API_URL + query + searchTerm);
+  } else {
+    location.reload();
   }
-);
+});

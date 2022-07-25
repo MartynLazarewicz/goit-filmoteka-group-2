@@ -145,15 +145,15 @@ function addMovieToLibrary(key, movie) {
 
   if (libraryItems === null) {
     const data = [movie];
-    localStorage.setItem(key, JSON.stringify(data));
-  } else {
-    const getLocalStorage = JSON.parse(libraryItems);
+    localStorage.setItem(key, JSON.stringify(movie));
+  }
+  const getLocalStorage = JSON.parse(libraryItems);
 
-    if (getLocalStorage.find(m => m.id === movie.id) === undefined) {
-      getLocalStorage.push(movie);
-      Notiflix.Notify.success('The video has been added to the list');
-      localStorage.setItem(key, JSON.stringify(getLocalStorage));
-    }
+  if (getLocalStorage.find(m => m.id === movie.id) === undefined) {
+    getLocalStorage.push(movie);
+    Notiflix.Notify.success('The video has been added to the list');
+    localStorage.setItem(key, JSON.stringify(getLocalStorage));
+  } else {
     if (getLocalStorage.find(m => m.id === movie.id) === undefined) {
       getLocalStorage.push(movie);
       localStorage.setItem(key, JSON.stringify(getLocalStorage));
