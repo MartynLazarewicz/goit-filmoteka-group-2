@@ -57,8 +57,15 @@ window.getMoviesSearch = function getMoviesSearch(url, page, searchTerm) {
       let totalPages = data.total_pages;
       page = data.page;
       data = data.results;
+
       pagination.innerHTML = createPaginationSearch(totalPages, page);
       showMovies(data);
+
+      if (data.length === 0) {
+        document.querySelector('.form__warning').classList.add('show');
+      } else {
+        document.querySelector('.form__warning').classList.remove('show');
+      }
     })
     .catch(error => console.log(error));
 };
@@ -66,13 +73,9 @@ window.getMoviesSearch = function getMoviesSearch(url, page, searchTerm) {
 form.addEventListener('submit', e => {
   e.preventDefault();
   let searchTerm = document.querySelector('input').value;
-  if (searchTerm === 0) {
-    console.log('no movies');
-    // console.log(getMoviesSearch());
-  } else {
-    // getMovies(API_URL);
+  if (searchTerm.length !== 0) {
     getMoviesSearch(API_URL + query + searchTerm);
-
-    // document.createElement('div');
+  } else {
+    location.reload();
   }
 });
