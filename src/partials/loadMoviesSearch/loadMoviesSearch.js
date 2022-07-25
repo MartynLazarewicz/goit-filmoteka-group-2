@@ -59,6 +59,13 @@ window.getMoviesSearch = function getMoviesSearch(url, page, searchTerm) {
       data = data.results;
       pagination.innerHTML = createPaginationSearch(totalPages, page);
       showMovies(data);
+
+      if (data.length === 0) {
+         document.querySelector('.form__warning').classList.add('show');
+      } else {
+        document.querySelector('.form__warning').classList.remove('show');
+      }
+
     })
     .catch(error => console.log(error));
 };
@@ -66,12 +73,15 @@ window.getMoviesSearch = function getMoviesSearch(url, page, searchTerm) {
 form.addEventListener('submit', e => {
   e.preventDefault();
   let searchTerm = document.querySelector('input').value;
-    if (searchTerm.length === 0) {
-        document.querySelector('.form__warning').classList.add('show');
-      } else {
-        document.querySelector('.form__warning').classList.remove('show');
-      }
-      getMoviesSearch(API_URL + query + searchTerm);
+
+  if (searchTerm.length === 0) {
+    document.querySelector('.form__warning').classList.add('show');
+  } else {
+    document.querySelector('.form__warning').classList.remove('show');
   
+    getMoviesSearch(API_URL + query + searchTerm);
   }
-);
+  //location.reload();
+  // }
+
+});
